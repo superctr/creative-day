@@ -5,13 +5,18 @@ from how_to_class import drawClass
 from Obstacle import obsticleClass
 from Veoneer_Car_Class import drawVeoneerClass
 
-def CheckColision(player_list, obstacle_list):
+def CheckColision(player_list, obstacle_list, bullet_list):
     player_number = 0
     for player in player_list:
         for obstacle in obstacle_list:
-            if (player_number != obstacle.creator and
-                    abs(player.center_x - obstacle.center_x) < (player.width / 2) and abs(player.center_y - obstacle.center_y) < (player.width / 2)):
-                #Colision reached
+            if (abs(player.center_x - obstacle.center_x) < (player.width / 2) and abs(player.center_y - obstacle.center_y) < (player.width / 2)):
+                #Colision reached, destroy car and obstacle
+                player_list.pop(player_list.index(player))
+                obstacle_list.pop(obstacle_list.index(obstacle))
+    for bullet in bullet_list:
+        for obstacle in obstacle_list:
+            if (abs(bullet.center_x - obstacle.center_x) < (bullet.width) and abs(bullet.center_y - bullet.center_y) < (bullet.width)):
+                bullet_list.pop(bullet_list.index(bullet))
                 obstacle_list.pop(obstacle_list.index(obstacle))
         player_number = player_number + 1
 
@@ -21,6 +26,7 @@ def Main():
     
     player_list = []
     obstacle_list = []
+    bullet_list = []
 
     test_draw_object = drawClass(screen_width, screen_height)
     test_draw_object2 = drawVeoneerClass(screen_width, screen_height)
@@ -40,14 +46,19 @@ def Main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
         for player in player_list:
-            player.update(keys,screen_width, screen_height, obstacle_list)
+            player.update(keys,screen_width, screen_height, bullet_list)
             player.draw(screen)
         for obstacle in obstacle_list:
             if obstacle.remove:
                 obstacle_list.pop(obstacle_list.index(obstacle))
             obstacle.update(keys,screen_width, screen_height)
             obstacle.draw(screen)
-        CheckColision(player_list, obstacle_list)
+        for bullet in bullet_list:
+            if bullet.remove:
+                bullet_list.pop(bullet_list.index(bullet))
+            bullet.update(keys,screen_width, screen_height)
+            bullet.draw(screen)
+        CheckColision(player_list, obstacle_list, bullet_list)
 
         pygame.display.flip()
     
