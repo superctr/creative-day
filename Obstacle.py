@@ -51,4 +51,5 @@ class obsticleClass():
     def draw(self,screen):
         rectangle = (self.x, self.y, self.width, self.height)
         screen.blit(self.object, (self.x, self.y))
-        pygame.draw.circle(screen, (255,0,0), (int(self.center_x), int(self.center_y)), 5)
+        #Red dot on Obstacle
+        #pygame.draw.circle(screen, (255,0,0), (int(self.center_x), int(self.center_y)), 5)
