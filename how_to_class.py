@@ -12,7 +12,6 @@ class drawClass():
         self.object = pygame.image.load("Sprites/Veoneer_Car.png").convert_alpha()
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
         self.delta_x, self.delta_y = 0, 0
-        self.color = (0,255,0)
         self.speed = 1
         self.angle = 0
 
