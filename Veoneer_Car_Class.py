@@ -9,7 +9,7 @@ class drawVeoneerClass():
         self.height = 50
         self.center_x = int(self.x + self.width / 2)
         self.center_y = int(self.y + self.height / 2)
-        self.object = pygame.image.load("Sprites/Veoneer_Car.png").convert_alpha()
+        self.object = pygame.image.load("Sprites/Veoneer_Car2.png").convert_alpha()
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
         self.delta_x, self.delta_y = 0, 0
         self.speed = 1
