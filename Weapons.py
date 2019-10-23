@@ -13,8 +13,8 @@ class WeaponsClass():
         self.damage = 0
         self.name = ""
         self.remove = False
-        self.sprite = ""
-        self.sprite 
+        self.sprite =  pygame.image.load("Sprites/bullet.png").convert_alpha()
+        self.sprite = pygame.transform.scale(self.sprite, (self.width, self.height))
         self.explosion = False
         self.explosion_sprite = False
         self.display = False
@@ -29,9 +29,6 @@ class WeaponsClass():
         screen.blit(rotated_image, new_weapon.topleft)
         pygame.draw.circle(screen, (255,0,0), (self.center_x, self.center_y), 5)
     
-    def update(self, screen_width, screen_height, speed_x, speed_y):
-            self.x =+ speed_x
-            self.y =+ speed_y
 
     def set_damage(self, damage):
         self.damage = damage
@@ -80,17 +77,29 @@ class WeaponsClass():
 
     def get_explosion_sprite(self):
         return(self.explosion_sprite)
+  
+    def update(self, screen_width, screen_height, speed_x, speed_y):
+        if (self.x <= screen_width  or self.x >= screen_width or 
+        self.y <= screen_height  or self.y >= screen_height):
+            self.remove = True
+        else:
+            self.remove = False
 
 
 def Make_Bullet (x, y, speed_x, speed_y, screen):
     Bullet = WeaponsClass(x,y, screen)
-    Bullet.set_sprite('../Sprites/bullet.png')
+    Bullet.set_sprite("Sprites/bullet.png")
     Bullet.set_speed(10)
     Bullet.set_damage(10)
     Bullet.draw_weapon(screen)
 
 
-
+def Make_Missile (x, y, speed_x, speed_y, screen):
+    Missile = WeaponsClass(x,y, screen)
+    Missile.set_sprite("Sprites/missile.png")
+    Missile.set_speed(10)
+    Missile.set_damage(10)
+    Missile.draw_weapon(screen)
     
 
     
