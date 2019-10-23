@@ -2,12 +2,13 @@ import sys, pygame, math
 
 class drawClass():
     def __init__(self):
+        self.x, self.y = 200, 200
+        self.width = 100
+        self.height = 50
+        self.center_x = int(self.x + self.width / 2)
+        self.center_y = int(self.y + self.height / 2)
         self.object = pygame.image.load("Sprites/Veoneer_Car.png").convert_alpha()
-        self.object = pygame.transform.scale(self.object,(100,50))
-        self.x, self.y = 100, 100
-        self.center_x, self.center_y = 100, 100
-        self.width = 50
-        self.height = 100
+        self.object = pygame.transform.scale(self.object,(self.width,self.height))
         self.color = (0,255,0)
         self.speed = 1
         self.angle = 0
@@ -27,10 +28,11 @@ class drawClass():
         self.speed = self.speed * 0.95
 
         radians = self.angle * math.pi / 180.
+        
         self.x += math.cos(radians) * self.speed
         self.y += math.sin(radians) * self.speed
-        self.center_x = int(self.x + self.height / 2)
-        self.center_y = int(self.y + self.width / 2)
+        self.center_x = int(self.x + self.width / 2)
+        self.center_y = int(self.y + self.height / 2)
 
     def draw_rectangle(self,screen):
 
