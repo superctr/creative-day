@@ -9,6 +9,7 @@ class drawClass():
         self.center_y = int(self.y + self.height / 2)
         self.object = pygame.image.load("Sprites/Veoneer_Car.png").convert_alpha()
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
+        self.delta_x, self.delta_y = 0, 0
         self.color = (0,255,0)
         self.speed = 1
         self.angle = 0
@@ -28,14 +29,22 @@ class drawClass():
         self.speed = self.speed * 0.95
 
         radians = self.angle * math.pi / 180.
-        
-        self.x += math.cos(radians) * self.speed
-        self.y += math.sin(radians) * self.speed
+        self.delta_x = math.cos(radians) * self.speed
+        self.delta_y = math.sin(radians) * self.speed
+
+        # wall collision x
+        if(self.center_x + self.delta_x < 5 or self.center_x + self.delta_x > 1019 or
+           self.center_y + self.delta_y < 5 or self.center_y + self.delta_y > 859):
+            self.speed = self.speed * -0.1
+            self.delta_x = math.cos(radians) * self.speed
+            self.delta_y = math.sin(radians) * self.speed
+
+        self.x += self.delta_x
+        self.y += self.delta_y
         self.center_x = int(self.x + self.width / 2)
         self.center_y = int(self.y + self.height / 2)
 
     def draw_rectangle(self,screen):
-
         #rectangle = (self.x, self.y, self.width, self.height)
         #pygame.draw.rect(screen, self.color, rectangle)
         center = self.object.get_rect().center

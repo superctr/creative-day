@@ -1,0 +1,43 @@
+import sys, pygame
+import numpy as np
+import math
+import random
+
+OBSTACLE_SPEED_CONST = 10
+
+class obsticleClass():
+    def __init__(self,screen_width, screen_height):
+        self.x, self.y = 100, 100
+        self.width = 100
+        self.height = 100
+        self.color = (0,255,0)
+
+        self.vx, self.vy = random.randint(-10,10), random.randint(-10,10)
+        if abs(self.vx)>abs(self.vy):
+            self.y = random.randint(0,screen_width)
+            if self.vx>0:
+                self.x = 0
+            else:
+                self.x = screen_width
+        else:
+            self.x = random.randint(0,screen_height)
+            if self.vy>0:
+                self.y = 0
+            else:
+                self.y = screen_height
+        self.normalizeSpeed()
+        self.object = pygame.image.load("Sprites/obsticle3.png")
+        self.object = pygame.transform.scale(self.object,(self.width,self.height))
+
+    def normalizeSpeed(self):
+        norm = math.sqrt(math.pow(self.vx,2) + math.pow(self.vy,2))
+        self.vx = self.vx * OBSTACLE_SPEED_CONST / norm
+        self.vy = self.vy * OBSTACLE_SPEED_CONST / norm
+
+    def update(self, keys, screen_width, screen_height):
+        self.x += self.vx
+        self.y += self.vy
+
+    def draw_rectangle(self,screen):
+        rectangle = (self.x, self.y, self.width, self.height)
+        screen.blit(self.object, (self.x, self.y))

@@ -3,12 +3,14 @@ import threading, time
 #from gameModules import InputHandler
 
 from how_to_class import drawClass
+from Obstacle import obsticleClass
     
 def Main(): 
     game_running = True
 
     clock = pygame.time.Clock()
     test_draw_object = drawClass()
+    Test_obsticle = obsticleClass(screen_width, screen_height)
 
     while game_running:
         clock.tick(30)
@@ -21,6 +23,9 @@ def Main():
 
         test_draw_object.update(keys,screen_width, screen_height)
         test_draw_object.draw_rectangle(screen)
+
+        Test_obsticle.draw_rectangle(screen)
+        Test_obsticle.update(keys,screen_width, screen_height)
 
         # displays what we drawn.
         pygame.display.flip()
