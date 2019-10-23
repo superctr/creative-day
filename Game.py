@@ -40,7 +40,7 @@ def Main():
         keys = pygame.key.get_pressed()
 
         random_number = random.randint(0,100)
-        if random_number > 90 and len(obstacle_list) < 8:
+        if random_number > 90 and len(obstacle_list) < 12:
             obstacle_list.append(obsticleClass(screen_width, screen_height))
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
