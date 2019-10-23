@@ -7,6 +7,7 @@ OBSTACLE_SPEED_CONST = 10
 class obsticleClass():
     def __init__(self,screen_width, screen_height):
         self.x, self.y = 100, 100
+        self.creator = -1
         self.width = 65
         self.height = 65
         self.center_x, self.center_y = self.x + self.width/2, self.y + self.height/2

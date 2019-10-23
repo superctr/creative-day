@@ -5,11 +5,14 @@ from how_to_class import drawClass
 from Obstacle import obsticleClass
 
 def CheckColision(player_list, obstacle_list):
+    player_number = 0
     for player in player_list:
         for obstacle in obstacle_list:
-            if (abs(player.center_x - obstacle.center_x) < (player.width / 2) and abs(player.center_y - obstacle.center_y) < (player.width / 2)):
+            if (player_number != obstacle.creator and
+                    abs(player.center_x - obstacle.center_x) < (player.width / 2) and abs(player.center_y - obstacle.center_y) < (player.width / 2)):
                 #Colision reached
                 obstacle_list.pop(obstacle_list.index(obstacle))
+        player_number = player_number + 1
 
 def Main(): 
     game_running = True
