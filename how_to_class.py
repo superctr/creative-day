@@ -18,15 +18,15 @@ class drawClass():
         self.bullet_timeout = 0
 
     def update(self, keys, screen_width, screen_height, obstacle_list):
-        if keys[pygame.K_a]:
+        if keys[pygame.K_LEFT]:
             self.angle -= min(abs(self.speed), 5)
-        elif keys[pygame.K_d]:
+        elif keys[pygame.K_RIGHT]:
             self.angle += min(abs(self.speed), 5)
         self.angle = self.angle % 360
 
-        if keys[pygame.K_w] and self.speed < 20:
+        if keys[pygame.K_UP] and self.speed < 20:
             self.speed += 1
-        elif keys[pygame.K_s] and self.speed > -20:
+        elif keys[pygame.K_DOWN] and self.speed > -20:
             self.speed -= 1
 
         if self.bullet_timeout > 0:
