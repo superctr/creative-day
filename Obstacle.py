@@ -1,8 +1,8 @@
 import sys, pygame
 import numpy as np
 import math
+import random
 
-OBSTACLE_SPEED_VEC = velocity()
 
 class velocity():
     def __init__(self, x, y):
@@ -21,21 +21,14 @@ class obsticleClass():
         self.width = 50
         self.height = 100
         self.color = (0,255,0)
-        self.speed = 20
-        self.direction = Velocity()
+        self.vx, self.vy = 0, 0
+        #self.direction = Velocity()
+        self.object = pygame.image.load("Sprites/obsticle.png")
 
     def update(self, keys, screen_width, screen_height):
-        if keys[pygame.K_LEFT] and self.x > (0):
-            self.x -= self.speed
-        elif keys[pygame.K_RIGHT] and self.x < (screen_width - self.width):
-            self.x += self.speed
-        elif keys[pygame.K_UP] and self.y > (0):
-            self.y -= self.speed
-        elif keys[pygame.K_DOWN] and self.y < (screen_height - self.height):
-            self.y += self.speed
-            elif keys[pygame.K_DOWN] and self.y < (screen_height - self.height):
-            self.y += self.speed
+        self.x += self.vx
+        self.y += self.vy
 
     def draw_rectangle(self,screen):
         rectangle = (self.x, self.y, self.width, self.height)
-        pygame.draw.rect(screen, self.color, rectangle)
+        screen.blit(self.object, (self.x, self.y))
