@@ -3,7 +3,7 @@ from bullet import bullet
 
 class drawVeoneerClass():
     def __init__(self, screen_width, screen_height):
-        self.x, self.y = 200, 200
+        self.x, self.y = 800, 200
         self.screen_width = screen_width - 5
         self.screen_height = screen_height - 5
         self.width = 100
@@ -14,7 +14,7 @@ class drawVeoneerClass():
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
         self.delta_x, self.delta_y = 0, 0
         self.speed = 1
-        self.angle = 0
+        self.angle = 180
         self.bullet_timeout = 0
 
     def update(self, keys, screen_width, screen_height, obstacle_list):
