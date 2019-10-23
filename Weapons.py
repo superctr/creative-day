@@ -1,7 +1,7 @@
 import sys, pygame
 
 class WeaponsClass():
-    def __init__(self, x, y):
+    def __init__(self, x, y, screen):
         self.x, self.y = x, y
         self.width = 10
         self.height = 10
@@ -82,12 +82,12 @@ class WeaponsClass():
         return(self.explosion_sprite)
 
 
-def Make_Bullet (x, y, speed_x, speed_y):
-    Bullet = WeaponsClass(x,y)
-    Bullet.set_sprite('.../Sprites/bullet.png')
+def Make_Bullet (x, y, speed_x, speed_y, screen):
+    Bullet = WeaponsClass(x,y, screen)
+    Bullet.set_sprite('../Sprites/bullet.png')
     Bullet.set_speed(10)
     Bullet.set_damage(10)
-
+    Bullet.draw_weapon(screen)
 
 
 
