@@ -1,10 +1,12 @@
 import sys, pygame
 
 class WeaponsClass():
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y):
         self.x, self.y = x, y
-        self.width = width
-        self.height = height
+        self.width = 10
+        self.height = 10
+        self.center_x = int(self.x + self.width / 2)
+        self.center_y = int(self.y + self.height / 2)
         self.speed = 0
         self.direction = 0
         self.color = (0, 150, 0)
@@ -19,12 +21,12 @@ class WeaponsClass():
         self.angle = 0
    
     def draw_weapon(self, screen):
-        center = self.object.get_rect().center
-        rotated_image = pygame.transform.rotate(self.object, -self.angle)
+        center = self.sprite.get_rect().center
+        rotated_image = pygame.transform.rotate(self.sprite, -self.angle)
         new_weapon = rotated_image.get_rect(center = center)
         new_weapon.x += self.x
         new_weapon.y += self.y 
-        screen.blit(rotated_image, new_rect.topleft)
+        screen.blit(rotated_image, new_weapon.topleft)
         pygame.draw.circle(screen, (255,0,0), (self.center_x, self.center_y), 5)
     
     def update(self, screen_width, screen_height, speed_x, speed_y):
@@ -81,7 +83,7 @@ class WeaponsClass():
 
 
 def Make_Bullet (x, y, speed_x, speed_y):
-    Bullet = WeaponsClass(x,y, width, height)
+    Bullet = WeaponsClass(x,y)
     Bullet.set_sprite('.../Sprites/bullet.png')
     Bullet.set_speed(10)
     Bullet.set_damage(10)
