@@ -16,9 +16,9 @@ class drawClass():
 
     def update(self, keys, screen_width, screen_height):
         if keys[pygame.K_LEFT]:
-            self.angle -= 5
+            self.angle -= min(abs(self.speed), 5)
         elif keys[pygame.K_RIGHT]:
-            self.angle += 5
+            self.angle += min(abs(self.speed), 5)
         self.angle = self.angle % 360
 
         if keys[pygame.K_UP] and self.speed < 20:
