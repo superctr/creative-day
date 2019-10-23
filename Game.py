@@ -23,7 +23,7 @@ def Main():
     obstacle_list = []
 
     test_draw_object = drawClass(screen_width, screen_height)
-    test_draw_object2 = drawVeoneerClass()
+    test_draw_object2 = drawVeoneerClass(screen_width, screen_height)
 
     player_list.append(test_draw_object)
     player_list.append(test_draw_object2)
