@@ -2,7 +2,8 @@ import sys, pygame, math
 
 class drawClass():
     def __init__(self):
-        self.object = pygame.image.load("Sprites/Nira_Car.jpg")
+        self.object = pygame.image.load("Sprites/Veoneer_Car.png").convert_alpha()
+        self.object = pygame.transform.scale(self.object,(120,80))
         self.x, self.y = 100, 100
         self.width = 50
         self.height = 100
@@ -19,8 +20,10 @@ class drawClass():
 
         if keys[pygame.K_UP] and self.speed < 20:
             self.speed += 1
-        elif keys[pygame.K_DOWN] and self.speed > 0:
+        elif keys[pygame.K_DOWN] and self.speed > -20:
             self.speed -= 1
+
+        self.speed = self.speed * 0.95
 
         radians = self.angle * math.pi / 180.
         self.x += math.cos(radians) * self.speed
