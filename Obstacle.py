@@ -7,9 +7,10 @@ OBSTACLE_SPEED_CONST = 10
 class obsticleClass():
     def __init__(self,screen_width, screen_height):
         self.x, self.y = 100, 100
+        self.creator = -1
         self.width = 65
         self.height = 65
-        self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
+        self.center_x, self.center_y = self.x + self.width/2, self.y + self.height/2
         self.color = (0,255,0)
         self.vx, self.vy = random.randint(-10,10), random.randint(-10,10)
         if self.vx == 0 and self.vy == 0:
@@ -43,10 +44,11 @@ class obsticleClass():
     def update(self, keys, screen_width, screen_height):
         self.x += self.vx
         self.y += self.vy
-        self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
+        self.center_x, self.center_y = self.x + self.width/2, self.y +  self.height/2
         if self.x < 0 or self.x > screen_width or self.y < 0 or self.y > screen_height:
             self.remove = True
 
     def draw(self,screen):
         rectangle = (self.x, self.y, self.width, self.height)
         screen.blit(self.object, (self.x, self.y))
+        pygame.draw.circle(screen, (255,0,0), (int(self.center_x), int(self.center_y)), 5)
