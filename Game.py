@@ -15,7 +15,7 @@ def CheckColision(player_list, obstacle_list, bullet_list):
                 obstacle_list.pop(obstacle_list.index(obstacle))
     for bullet in bullet_list:
         for obstacle in obstacle_list:
-            if (abs(bullet.center_x - obstacle.center_x) < (bullet.width) and abs(bullet.center_y - bullet.center_y) < (bullet.width)):
+            if (abs(bullet.center_x - obstacle.center_x) < (obstacle.width) and abs(bullet.center_y - obstacle.center_y) < (obstacle.width)):
                 bullet_list.pop(bullet_list.index(bullet))
                 obstacle_list.pop(obstacle_list.index(obstacle))
         player_number = player_number + 1
