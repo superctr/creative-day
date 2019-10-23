@@ -1,28 +1,44 @@
 import sys, pygame
 import threading, time
-#from gameModules import InputHandler
-
+import random
 from how_to_class import drawClass
-    
+from Obstacle import obsticleClass
+
+i = 0
+
 def Main(): 
     game_running = True
-
     clock = pygame.time.Clock()
+
+    player_list = []
+    obstacle_list = []
+
     test_draw_object = drawClass()
+    player_list.append(test_draw_object)
 
     while game_running:
         clock.tick(30)
-        screen.blit(parking_bg, (0,0))
 
+        screen.blit(parking_bg, (0,0))
         keys = pygame.key.get_pressed()
+
+        random_number = random.randint(0,10)
+        if random_number > 8 and len(obstacle_list) < 5:
+            obstacle_list.append(obsticleClass(screen_width, screen_height))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
 
-        test_draw_object.update(keys,screen_width, screen_height)
-        test_draw_object.draw_rectangle(screen)
+        for player in player_list:
+            player.update(keys,screen_width, screen_height)
+            player.draw(screen)
 
-        # displays what we drawn.
+        for obstacle in obstacle_list:
+            if obstacle.remove:
+                obstacle_list.pop(obstacle_list.index(obstacle))
+            obstacle.update(keys,screen_width, screen_height)
+            obstacle.draw(screen)
+    
         pygame.display.flip()
     
     pygame.quit()
@@ -31,6 +47,7 @@ if __name__ == '__main__':
 
     screen_size = screen_width, screen_height = 1024, 864
     black = 0,0,0
+
     screen = pygame.display.set_mode(screen_size)
 
     parking_bg = pygame.image.load('parking.jpg')

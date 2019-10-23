@@ -26,18 +26,13 @@ class drawClass():
             self.speed -= 1
 
         self.speed = self.speed * 0.95
-
         radians = self.angle * math.pi / 180.
-        
         self.x += math.cos(radians) * self.speed
         self.y += math.sin(radians) * self.speed
         self.center_x = int(self.x + self.width / 2)
         self.center_y = int(self.y + self.height / 2)
 
-    def draw_rectangle(self,screen):
-
-        #rectangle = (self.x, self.y, self.width, self.height)
-        #pygame.draw.rect(screen, self.color, rectangle)
+    def draw(self,screen):
         center = self.object.get_rect().center
         rotated_image = pygame.transform.rotate(self.object, -self.angle)
         new_rect = rotated_image.get_rect(center = center)
