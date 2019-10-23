@@ -1,4 +1,5 @@
 import sys, pygame, math
+from bullet import bullet
 
 class drawVeoneerClass():
     def __init__(self, screen_width, screen_height):
@@ -14,6 +15,7 @@ class drawVeoneerClass():
         self.delta_x, self.delta_y = 0, 0
         self.speed = 1
         self.angle = 0
+        self.bullet_timeout = 0
 
     def update(self, keys, screen_width, screen_height, obstacle_list):
         if keys[pygame.K_a]:
@@ -27,6 +29,15 @@ class drawVeoneerClass():
         elif keys[pygame.K_s] and self.speed > -20:
             self.speed -= 1
 
+        if self.bullet_timeout > 0:
+            self.bullet_timeout = self.bullet_timeout - 1
+        elif keys[pygame.K_LCTRL]:
+            # Space is held, there is an autofire limit
+            obstacle_list.append(bullet(screen_width,screen_height,self.center_x,self.center_y,self.angle,1))
+            self.bullet_timeout = 9
+        else:
+            # Space is released, we can fire immediately after.
+            self.bullet_timeout = 0
         self.speed = self.speed * 0.95
         radians = self.angle * math.pi / 180.
 		
