@@ -14,8 +14,9 @@ class WeaponsClass():
         self.sprite = ""
         self.explosion = False
         self.explosion_sprite = False
+        self.display = False
    
-    def draw_rectangle(self, screen):
+    def draw_weapon(self, screen):
         rectangle = (self.x, self.y, self.width, self.height)
         pygame.draw.rect(screen, self.color, rectangle)
     
@@ -76,6 +77,8 @@ def Make_Bullet (x, y, width, height, direction, Nbr):
     Bullet.set_name = "Bullet" + str(Nbr)
     Bullet.set_sprite('.../Sprites/bullet.png')
     Bullet.set_speed(10)
+    Bullet.set_damage(10)
+
 
 
 
