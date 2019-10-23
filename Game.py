@@ -11,7 +11,7 @@ def Main():
     player_list = []
     obstacle_list = []
 
-    test_draw_object = drawClass()
+    test_draw_object = drawClass(screen_width, screen_height)
 
     player_list.append(test_draw_object)
 
