@@ -37,7 +37,7 @@ def Main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
         for player in player_list:
-            player.update(keys,screen_width, screen_height)
+            player.update(keys,screen_width, screen_height, obstacle_list)
             player.draw(screen)
         for obstacle in obstacle_list:
             if obstacle.remove:
