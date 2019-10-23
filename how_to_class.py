@@ -16,9 +16,9 @@ class drawClass():
 
     def update(self, keys, screen_width, screen_height):
         if keys[pygame.K_LEFT]:
-            self.angle -= 5
+            self.angle -= min(abs(self.speed), 5)
         elif keys[pygame.K_RIGHT]:
-            self.angle += 5
+            self.angle += min(abs(self.speed), 5)
         self.angle = self.angle % 360
 
         if keys[pygame.K_UP] and self.speed < 20:
@@ -27,8 +27,8 @@ class drawClass():
             self.speed -= 1
 
         self.speed = self.speed * 0.95
-
         radians = self.angle * math.pi / 180.
+		
         self.delta_x = math.cos(radians) * self.speed
         self.delta_y = math.sin(radians) * self.speed
 
@@ -44,9 +44,7 @@ class drawClass():
         self.center_x = int(self.x + self.width / 2)
         self.center_y = int(self.y + self.height / 2)
 
-    def draw_rectangle(self,screen):
-        #rectangle = (self.x, self.y, self.width, self.height)
-        #pygame.draw.rect(screen, self.color, rectangle)
+    def draw(self,screen):
         center = self.object.get_rect().center
         rotated_image = pygame.transform.rotate(self.object, -self.angle)
         new_rect = rotated_image.get_rect(center = center)
