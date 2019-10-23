@@ -12,46 +12,74 @@ class WeaponsClass():
         self.name = ""
         self.remove = False
         self.sprite = ""
+        self.explosion = False
+        self.explosion_sprite = False
    
     def draw_rectangle(self, screen):
         rectangle = (self.x, self.y, self.width, self.height)
         pygame.draw.rect(screen, self.color, rectangle)
     
-    def set_color(r,g,b)
+    def set_color(self, r, g, b):
         self.color = (r, g, b)
 
-    def set_damage(self, damage)
+    def set_damage(self, damage):
         self.damage = damage
-
-    def get_damage()
-        return(self.damage)
-
-    def set_name(self,name)
+        
+    def set_name(self,name):
         self.name = name 
 
-    def get_name()
-        return(self.name)
-
-    def set_speed(self, speed)
-        self.speed = speed
-
-    def get_speed()
-        return(self.speed)
-
-    def set_status(self, status)
-        if status = True:
+    def set_status(self, status):
+        if status == True:
             self.remove = True
         else:
             self.remove = False
 
-    def get_status()
+    def set_speed(self, speed):
+        self.speed = speed
+
+    def set_sprite(self, sprite):
+        self.sprite =  pygame.image.load(sprite).convert_alpha()
+
+    def set_explosion(self, status):
+        if status == True:
+            self.explosion = True
+        else:
+            self.explosion = False
+
+    def set_explosion_sprite(self, sprite):
+        self.explosion_sprite = pygame.image.load(sprite).convert_alpha()
+        
+    def get_damage(self):
+        return(self.damage)
+
+    def get_name(self):
+        return(self.name)
+
+    def get_speed(self):
+        return(self.speed)
+
+    def get_status(self):
         return(self.remove)
-
-    def set_sprite(self, sprite)
-        self.sprite =  pygame.image.load(sprite)
-
-    def get_sprite()
+    
+    def get_sprite(self):
         return(self.sprite)
+
+    def get_explosion(self):
+        return(self.explosion)
+
+    def get_explosion_sprite(self):
+        return(self.explosion_sprite)
+
+
+def Make_Bullet (x, y, width, height, direction, Nbr):
+    Bullet = WeaponsClass(x,y, width, height)
+    Bullet.set_name = "Bullet" + str(Nbr)
+    Bullet.set_sprite('.../Sprites/bullet.png')
+    Bullet.set_speed(10)
+
+
+
+    
 
     
 
