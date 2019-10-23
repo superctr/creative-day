@@ -3,6 +3,8 @@ import numpy as np
 import math
 import random
 
+OBSTACLE_SPEED_CONST = 10
+
 class obsticleClass():
     def __init__(self,screen_width, screen_height):
         self.x, self.y = 100, 100
@@ -23,10 +25,14 @@ class obsticleClass():
                 self.y = 0
             else:
                 self.y = screen_height
-
-
+        self.normalizeSpeed()
         self.object = pygame.image.load("Sprites/obsticle3.png")
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
+
+    def normalizeSpeed(self):
+        norm = math.sqrt(math.pow(self.vx,2) + math.pow(self.vy,2))
+        self.vx = self.vx * OBSTACLE_SPEED_CONST / norm
+        self.vy = self.vy * OBSTACLE_SPEED_CONST / norm
 
     def update(self, keys, screen_width, screen_height):
         self.x += self.vx
