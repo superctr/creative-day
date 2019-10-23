@@ -44,12 +44,11 @@ def Main():
 
 if __name__ == '__main__':
 
-    screen_size = screen_width, screen_height = 1024, 864
+    screen_size = screen_width, screen_height = 1200, 900
     black = 0,0,0
-
     screen = pygame.display.set_mode(screen_size)
-
     parking_bg = pygame.image.load('parking.jpg')
+    parking_bg = pygame.transform.scale(parking_bg,(screen_width,screen_height))
     pygame.display.set_caption("Syntronic Pygame")
     pygame.init()
     Main()
