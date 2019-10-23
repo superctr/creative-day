@@ -10,9 +10,10 @@ class obsticleClass():
         self.x, self.y = 100, 100
         self.width = 100
         self.height = 100
+        self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
         self.color = (0,255,0)
-
         self.vx, self.vy = random.randint(-10,10), random.randint(-10,10)
+        self.normalizeSpeed()
         if abs(self.vx)>abs(self.vy):
             self.y = random.randint(0,screen_width)
             if self.vx>0:
@@ -25,9 +26,9 @@ class obsticleClass():
                 self.y = 0
             else:
                 self.y = screen_height
-        self.normalizeSpeed()
         self.object = pygame.image.load("Sprites/obsticle3.png")
         self.object = pygame.transform.scale(self.object,(self.width,self.height))
+        self.remove = False
 
     def normalizeSpeed(self):
         norm = math.sqrt(math.pow(self.vx,2) + math.pow(self.vy,2))
@@ -37,6 +38,9 @@ class obsticleClass():
     def update(self, keys, screen_width, screen_height):
         self.x += self.vx
         self.y += self.vy
+        self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
+        if self.x < 0 or self.x > screen_width or self.y < 0 or self.y > screen_height:
+            self.remove = True
 
     def draw_rectangle(self,screen):
         rectangle = (self.x, self.y, self.width, self.height)
