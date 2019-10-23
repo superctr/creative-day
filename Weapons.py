@@ -78,11 +78,11 @@ class WeaponsClass():
         return(self.explosion_sprite)
   
     def update(self, screen_width, screen_height, speed_x, speed_y):
-        if (self.x <= screen_width  or self.x >= screen_width or 
-        self.y <= screen_height  or self.y >= screen_height):
+        self.x += speed_x
+        self.y += speed_y
+        self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
+        if self.x < 0 or self.x > screen_width or self.y < 0 or self.y > screen_height:
             self.remove = True
-        else:
-            self.remove = False
 
 def Make_Bullet (x, y, speed_x, speed_y, screen):
     Bullet = WeaponsClass(x,y, screen)
@@ -91,10 +91,9 @@ def Make_Bullet (x, y, speed_x, speed_y, screen):
     Bullet.set_damage(10)
     Bullet.draw_weapon(screen)
 
-
 def Make_Missile (x, y, speed_x, speed_y, screen):
     Missile = WeaponsClass(x,y, screen)
     Missile.set_sprite("Sprites/missile.png")
     Missile.set_speed(10)
     Missile.set_damage(10)
-    Missile.draw_weapon(screen)    
+    Missile.draw_weapon(screen)
