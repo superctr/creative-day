@@ -2,7 +2,7 @@ import sys, pygame
 import threading, time
 #from gameModules import InputHandler
 
-from how_to_draw_class import drawClass
+from how_to_class import drawClass
     
 def Main(): 
     game_running = True
