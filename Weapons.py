@@ -7,7 +7,7 @@ class WeaponsClass():
         self.height = 10
         self.center_x = int(self.x + self.width / 2)
         self.center_y = int(self.y + self.height / 2)
-        self.speed = 0
+        self.speed = 10
         self.direction = 0
         self.color = (0, 150, 0)
         self.damage = 0
@@ -27,8 +27,7 @@ class WeaponsClass():
         new_weapon.x += self.x
         new_weapon.y += self.y 
         screen.blit(rotated_image, new_weapon.topleft)
-        pygame.draw.circle(screen, (255,0,0), (self.center_x, self.center_y), 5)
-    
+        pygame.draw.circle(screen, (255,0,0), (self.center_x, self.center_y), 5)   
 
     def set_damage(self, damage):
         self.damage = damage
@@ -85,7 +84,6 @@ class WeaponsClass():
         else:
             self.remove = False
 
-
 def Make_Bullet (x, y, speed_x, speed_y, screen):
     Bullet = WeaponsClass(x,y, screen)
     Bullet.set_sprite("Sprites/bullet.png")
@@ -99,9 +97,4 @@ def Make_Missile (x, y, speed_x, speed_y, screen):
     Missile.set_sprite("Sprites/missile.png")
     Missile.set_speed(10)
     Missile.set_damage(10)
-    Missile.draw_weapon(screen)
-    
-
-    
-
-    
+    Missile.draw_weapon(screen)    
