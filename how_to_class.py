@@ -31,7 +31,7 @@ class drawClass():
 
         if self.bullet_timeout > 0:
             self.bullet_timeout = self.bullet_timeout - 1
-        elif keys[pygame.K_SPACE]:
+        elif keys[pygame.K_RETURN]:
             # Space is held, there is an autofire limit
             obstacle_list.append(bullet(screen_width,screen_height,self.center_x,self.center_y,self.angle,0))
             self.bullet_timeout = 9
