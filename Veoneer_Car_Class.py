@@ -1,6 +1,6 @@
 import sys, pygame, math
 
-class drawClass():
+class drawVeoneerClass():
     def __init__(self, screen_width, screen_height):
         self.x, self.y = 200, 200
         self.screen_width = screen_width - 5
@@ -15,7 +15,7 @@ class drawClass():
         self.speed = 1
         self.angle = 0
 
-    def update(self, keys, screen_width, screen_height):
+    def update(self, keys, screen_width, screen_height, obstacle_list):
         if keys[pygame.K_a]:
             self.angle -= min(abs(self.speed), 5)
         elif keys[pygame.K_d]:
