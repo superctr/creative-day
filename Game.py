@@ -6,7 +6,6 @@ from Obstacle import obsticleClass
 from Veoneer_Car_Class import drawVeoneerClass
 
 def CheckColision(player_list, obstacle_list, bullet_list):
-    player_number = 0
     for player in player_list:
         for obstacle in obstacle_list:
             if (abs(player.center_x - obstacle.center_x) < (player.width / 2) and abs(player.center_y - obstacle.center_y) < (player.width / 2)):
@@ -42,7 +41,7 @@ def Main():
         keys = pygame.key.get_pressed()
 
         random_number = random.randint(0,100)
-        if random_number > 90 and len(obstacle_list) < 12:
+        if random_number > 90 and len(obstacle_list) < 8:
             obstacle_list.append(obsticleClass(screen_width, screen_height))
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
