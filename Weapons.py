@@ -86,14 +86,14 @@ class WeaponsClass():
 
 def Make_Bullet (x, y, speed_x, speed_y, screen):
     Bullet = WeaponsClass(x,y, screen)
-    Bullet.set_sprite("Sprites/bullet.png")
+    Bullet.set_sprite("Sprites/bullet.png").convert_alpha()
     Bullet.set_speed(10)
     Bullet.set_damage(10)
     Bullet.draw_weapon(screen)
 
 def Make_Missile (x, y, speed_x, speed_y, screen):
     Missile = WeaponsClass(x,y, screen)
-    Missile.set_sprite("Sprites/missile.png")
+    Missile.set_sprite("Sprites/missile.png").convert_alpha()
     Missile.set_speed(10)
     Missile.set_damage(10)
     Missile.draw_weapon(screen)
