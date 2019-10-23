@@ -12,6 +12,9 @@ class obsticleClass():
         self.center_x, self.center_y = self.x + screen_width/2, self.y + screen_height/2
         self.color = (0,255,0)
         self.vx, self.vy = random.randint(-10,10), random.randint(-10,10)
+        if self.vx == 0 and self.vy == 0:
+            self.vx = 1
+            self.vy = 0
         self.normalizeSpeed()
         self.SetInitialPosition(screen_width, screen_height)
         self.object = pygame.image.load("Sprites/obsticle3.png")
