@@ -2,7 +2,7 @@ import sys, pygame
 import math
 import random
 
-OBSTACLE_SPEED_CONST = 10
+OBSTACLE_SPEED_CONST = 6
 
 class obsticleClass():
     def __init__(self,screen_width, screen_height):
