@@ -1,8 +1,10 @@
 import sys, pygame, math
 
 class drawClass():
-    def __init__(self):
+    def __init__(self, screen_width, screen_height):
         self.x, self.y = 200, 200
+        self.screen_width = screen_width - 5
+        self.screen_height = screen_height - 5
         self.width = 100
         self.height = 50
         self.center_x = int(self.x + self.width / 2)
@@ -33,8 +35,8 @@ class drawClass():
         self.delta_y = math.sin(radians) * self.speed
 
         # wall collision x
-        if(self.center_x + self.delta_x < 5 or self.center_x + self.delta_x > 1019 or
-           self.center_y + self.delta_y < 5 or self.center_y + self.delta_y > 859):
+        if(self.center_x + self.delta_x < 5 or self.center_x + self.delta_x > screen_width or
+           self.center_y + self.delta_y < 5 or self.center_y + self.delta_y > screen_height):
             self.speed = self.speed * -0.1
             self.delta_x = math.cos(radians) * self.speed
             self.delta_y = math.sin(radians) * self.speed
