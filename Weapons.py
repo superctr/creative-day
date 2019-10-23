@@ -1,4 +1,4 @@
-import sys, pygame 
+import sys, pygame, Game
 
 class WeaponsClass():
     def __init__(self, x, y, width, height):
@@ -12,16 +12,24 @@ class WeaponsClass():
         self.name = ""
         self.remove = False
         self.sprite = ""
+        self.sprite 
         self.explosion = False
         self.explosion_sprite = False
         self.display = False
+        self.angle = 0
    
     def draw_weapon(self, screen):
-        rectangle = (self.x, self.y, self.width, self.height)
-        pygame.draw.rect(screen, self.color, rectangle)
+        center = self.object.get_rect().center
+        rotated_image = pygame.transform.rotate(self.object, -self.angle)
+        new_weapon = rotated_image.get_rect(center = center)
+        new_weapon.x += self.x
+        new_weapon.y += self.y 
+        screen.blit(rotated_image, new_rect.topleft)
+        pygame.draw.circle(screen, (255,0,0), (self.center_x, self.center_y), 5)
     
-    def set_color(self, r, g, b):
-        self.color = (r, g, b)
+    def update(self, screen_width, screen_height, speed_x, speed_y):
+            self.x =+ speed_x
+            self.y =+ speed_y
 
     def set_damage(self, damage):
         self.damage = damage
@@ -72,9 +80,8 @@ class WeaponsClass():
         return(self.explosion_sprite)
 
 
-def Make_Bullet (x, y, width, height, direction, Nbr):
+def Make_Bullet (x, y, speed_x, speed_y):
     Bullet = WeaponsClass(x,y, width, height)
-    Bullet.set_name = "Bullet" + str(Nbr)
     Bullet.set_sprite('.../Sprites/bullet.png')
     Bullet.set_speed(10)
     Bullet.set_damage(10)
