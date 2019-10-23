@@ -3,6 +3,7 @@ import threading, time
 import random
 from how_to_class import drawClass
 from Obstacle import obsticleClass
+from Veoneer_Car_Class import drawVeoneerClass
 
 def CheckColision(player_list, obstacle_list):
     player_number = 0
@@ -22,8 +23,10 @@ def Main():
     obstacle_list = []
 
     test_draw_object = drawClass(screen_width, screen_height)
+    test_draw_object2 = drawVeoneerClass()
 
     player_list.append(test_draw_object)
+    player_list.append(test_draw_object2)
 
     while game_running:
         clock.tick(30)
