@@ -1,4 +1,4 @@
-import sys, pygame, Game
+import sys, pygame
 
 class WeaponsClass():
     def __init__(self, x, y, width, height):
